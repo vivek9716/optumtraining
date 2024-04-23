@@ -4,22 +4,22 @@ pipeline {
 stage("Stages Running in Parallel") {
             failFast true
             parallel {
-                stage('Stage1') {
+                stage("Stage1") {
                     steps {
-                        echo “Stage1 executing”
+                        echo "Stage1 executing"
                         sleep 10
                     }
                 }
-                stage(‘Stage2’) {
+                stage("Stage2") {
                     steps {
-                        echo “Stage2 executing”
+                        echo "Stage2 executing"
                         sleep 2
 error ‘simulating error happened on Stage2’
                     }
                 }
-                stage(‘Stage3’) {
+                stage("Stage3") {
                     steps {
-                        echo “Stage3 executing”
+                        echo "Stage3 executing"
                         sleep 10
                     }
                 }
