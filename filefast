@@ -14,7 +14,7 @@ stage("Stages Running in Parallel") {
                     steps {
                         echo "Stage2 executing"
                         sleep 2
-error "simulating error happened on Stage2"
+                        error "simulating error happened on Stage2"
                     }
                 }
                 stage("Stage3") {
