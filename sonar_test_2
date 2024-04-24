@@ -91,7 +91,7 @@ def addGenerateReport() {
 
 def installSonarQubeCLI() {
     sh '''
-        sudo chmod +x /opt/sonar-scanner/bin/sonar-scanner
+        chmod +x /opt/sonar-scanner/bin/sonar-scanner
         . /etc/profile.d/sonar-scanner.sh
     '''
 }
