@@ -47,7 +47,13 @@ pipeline {
             }
         }
 
-        
+        stage('Install SonarQube CLI') {
+            steps {
+                script {
+                    installSonarQubeCLI()
+                }
+            }
+        }
 
         stage('Analyzing Code Quality') {
             steps {
@@ -87,7 +93,7 @@ def installSonarQubeCLI() {
     sh '''
         wget -O sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
         unzip -o -q sonar-scanner.zip
-        sudo mv --force sonar-scanner-5.0.1.3006-linux /opt/sonar-scanner
+        mv --force sonar-scanner-5.0.1.3006-linux /opt/sonar-scanner
         sudo sh -c 'echo "#/bin/bash \nexport PATH=\\\"$PATH:/opt/sonar-scanner/bin\\\"" >/etc/profile.d/sonar-scanner.sh'
         sudo chmod +x /opt/sonar-scanner/bin/sonar-scanner
         . /etc/profile.d/sonar-scanner.sh
@@ -96,13 +102,13 @@ def installSonarQubeCLI() {
 
 def analyzeCodeQuality() {
     sh '''
-        /opt/sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=vivek9716_javaproj \
-        -Dsonar.organization=vivek9716 \
+        /opt/sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=owtest23_sample-java-sonar \
+        -Dsonar.organization=owtest23 \
         -Dsonar.qualitygate.wait=true \
         -Dsonar.qualitygate.timeout=300 \
         -Dsonar.sources=src/main/java/ \
         -Dsonar.java.binaries=target/classes \
         -Dsonar.host.url=https://sonarcloud.io \
-        -Dsonar.login=3a964288529d78042d4d44892afa2e97ca437a28
+        -Dsonar.login=65558d8b45ebd4758f3e8d49b8f3582f8707306
     '''
 }
