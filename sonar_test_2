@@ -47,13 +47,7 @@ pipeline {
             }
         }
 
-        stage('Install SonarQube CLI') {
-            steps {
-                script {
-                    installSonarQubeCLI()
-                }
-            }
-        }
+        
 
         stage('Analyzing Code Quality') {
             steps {
